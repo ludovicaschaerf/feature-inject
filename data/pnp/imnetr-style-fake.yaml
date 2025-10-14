@@ -1,0 +1,329 @@
+- scale: 7.5
+  seed: 2757905295
+  ddim_steps: 50
+  source_prompt: a pattern of a penguin
+  target_prompts:
+    - "a pattern of a penguin in the style of Renaissance painting"
+    - "a pattern of a penguin in the style of Cubism"
+    - "a pattern of a penguin in the style of Surrealism"
+    - "a pattern of a penguin in the style of Pop Art"
+    - "a pattern of a penguin in the style of Impressionism"
+
+- scale: 7.5
+  seed: 3668101421
+  ddim_steps: 50
+  source_prompt: "a toy of a penguin"
+  target_prompts:
+    - "a toy of a penguin in the Baroque style"
+    - "a toy of a penguin in the style of Futurism"
+    - "a toy of a penguin in the style of Dadaism"
+    - "a toy of a penguin in the style of Art Nouveau"
+    - "a toy of a penguin in the style of Minimalism"
+
+- scale: 7.5
+  seed: 2776777070
+  ddim_steps: 50
+  source_prompt: a graphic of a penguin
+  target_prompts:
+    - "a graphic of a penguin in the style of Renaissance painting"
+    - "a graphic of a penguin in the style of Cubism"
+    - "a graphic of a penguin in the style of Surrealism"
+    - "a graphic of a penguin in the style of Pop Art"
+    - "a graphic of a penguin in the style of Impressionism"
+
+- scale: 7.5
+  seed: 726348123
+  ddim_steps: 50
+  source_prompt: a sketch of a husky
+  target_prompts:
+    - "a sketch of a husky in the Baroque style"
+    - "a sketch of a husky in the style of Futurism"
+    - "a sketch of a husky in the style of Dadaism"
+    - "a sketch of a husky in the style of Art Nouveau"
+    - "a sketch of a husky in the style of Minimalism"
+
+- scale: 7.5
+  seed: 4122336101
+  ddim_steps: 50
+  source_prompt: an origami of a husky
+  target_prompts:
+    - "an origami of a husky in the style of Renaissance painting"
+    - "an origami of a husky in the style of Cubism"
+    - "an origami of a husky in the style of Surrealism"
+    - "an origami of a husky in the style of Pop Art"
+    - "an origami of a husky in the style of Impressionism"
+
+- scale: 7.5
+  seed: 1987290896
+  ddim_steps: 50
+  source_prompt: a cartoon of a husky
+  target_prompts:
+    - "a cartoon of a husky in the Baroque style"
+    - "a cartoon of a husky in the style of Futurism"
+    - "a cartoon of a husky in the style of Dadaism"
+    - "a cartoon of a husky in the style of Art Nouveau"
+    - "a cartoon of a husky in the style of Minimalism"
+
+- scale: 7.5
+  seed: 3815346202
+  ddim_steps: 50
+  source_prompt: a cartoon of a goldfish
+  target_prompts:
+    - "a cartoon of a goldfish in the style of Renaissance painting"
+    - "a cartoon of a goldfish in the style of Cubism"
+    - "a cartoon of a goldfish in the style of Surrealism"
+    - "a cartoon of a goldfish in the style of Pop Art"
+    - "a cartoon of a goldfish in the style of Impressionism"
+
+- scale: 7.5
+  seed: 2554124655
+  ddim_steps: 50
+  source_prompt: a sketch of a goldfish
+  target_prompts:
+    - "a sketch of a goldfish in the Baroque style"
+    - "a sketch of a goldfish in the style of Futurism"
+    - "a sketch of a goldfish in the style of Dadaism"
+    - "a sketch of a goldfish in the style of Art Nouveau"
+    - "a sketch of a goldfish in the style of Minimalism"
+
+- scale: 7.5
+  seed: 753930922
+  ddim_steps: 50
+  source_prompt: a deviantart of a goldfish
+  target_prompts:
+    - "a deviantart of a goldfish in the style of Renaissance painting"
+    - "a deviantart of a goldfish in the style of Cubism"
+    - "a deviantart of a goldfish in the style of Surrealism"
+    - "a deviantart of a goldfish in the style of Pop Art"
+    - "a deviantart of a goldfish in the style of Impressionism"
+
+- scale: 7.5
+  seed: 42005919
+  ddim_steps: 50
+  source_prompt: a toy of a cat
+  target_prompts:
+    - "a toy of a cat in the Baroque style"
+    - "a toy of a cat in the style of Futurism"
+    - "a toy of a cat in the style of Dadaism"
+    - "a toy of a cat in the style of Art Nouveau"
+    - "a toy of a cat in the style of Minimalism"
+
+- scale: 7.5
+  seed: 149937726
+  ddim_steps: 50
+  source_prompt: an art of a cat
+  target_prompts:
+    - "an art of a cat in the style of Renaissance painting"
+    - "an art of a cat in the style of Cubism"
+    - "an art of a cat in the style of Surrealism"
+    - "an art of a cat in the style of Pop Art"
+    - "an art of a cat in the style of Impressionism"
+
+- scale: 7.5
+  seed: 1000723
+  ddim_steps: 50
+  source_prompt: a photo of a cat
+  target_prompts:
+    - "a photo of a cat in the Baroque style"
+    - "a photo of a cat in the style of Futurism"
+    - "a photo of a cat in the style of Dadaism"
+    - "a photo of a cat in the style of Art Nouveau"
+    - "a photo of a cat in the style of Minimalism"
+
+- scale: 7.5
+  seed: 1888106009
+  ddim_steps: 50
+  source_prompt: an image of a jeep
+  target_prompts:
+    - "an image of a jeep in the style of Renaissance painting"
+    - "an image of a jeep in the style of Cubism"
+    - "an image of a jeep in the style of Surrealism"
+    - "an image of a jeep in the style of Pop Art"
+    - "an image of a jeep in the style of Impressionism"
+
+- scale: 7.5
+  seed: 294330877
+  ddim_steps: 50
+  source_prompt: a painting of a jeep
+  target_prompts:
+    - "a painting of a jeep in the Baroque style"
+    - "a painting of a jeep in the style of Futurism"
+    - "a painting of a jeep in the style of Dadaism"
+    - "a painting of a jeep in the style of Art Nouveau"
+    - "a painting of a jeep in the style of Minimalism"
+
+- scale: 7.5
+  seed: 22211093
+  ddim_steps: 50
+  source_prompt: a cartoon of a jeep
+  target_prompts:
+    - "a cartoon of a jeep in the style of Renaissance painting"
+    - "a cartoon of a jeep in the style of Cubism"
+    - "a cartoon of a jeep in the style of Surrealism"
+    - "a cartoon of a jeep in the style of Pop Art"
+    - "a cartoon of a jeep in the style of Impressionism"
+
+- scale: 7.5
+  seed: 174785024
+  ddim_steps: 50
+  source_prompt: an embroidery of a castle
+  target_prompts:
+    - "an embroidery of a castle in the Baroque style"
+    - "an embroidery of a castle in the style of Futurism"
+    - "an embroidery of a castle in the style of Dadaism"
+    - "an embroidery of a castle in the style of Art Nouveau"
+    - "an embroidery of a castle in the style of Minimalism"
+
+- scale: 7.5
+  seed: 1001793435
+  ddim_steps: 50
+  source_prompt: a sketch of a castle
+  target_prompts:
+    - "a sketch of a castle in the style of Renaissance painting"
+    - "a sketch of a castle in the style of Cubism"
+    - "a sketch of a castle in the style of Surrealism"
+    - "a sketch of a castle in the style of Pop Art"
+    - "a sketch of a castle in the style of Impressionism"
+
+- scale: 7.5
+  seed: 3643750434
+  ddim_steps: 50
+  source_prompt: a deviantart of a castle
+  target_prompts:
+    - "a deviantart of a castle in the Baroque style"
+    - "a deviantart of a castle in the style of Futurism"
+    - "a deviantart of a castle in the style of Dadaism"
+    - "a deviantart of a castle in the style of Art Nouveau"
+    - "a deviantart of a castle in the style of Minimalism"
+
+- scale: 7.5
+  seed: 312986111
+  ddim_steps: 50
+  source_prompt: a photo of a pizza
+  target_prompts:
+    - "a photo of a pizza in the style of Renaissance painting"
+    - "a photo of a pizza in the style of Cubism"
+    - "a photo of a pizza in the style of Surrealism"
+    - "a photo of a pizza in the style of Pop Art"
+    - "a photo of a pizza in the style of Impressionism"
+
+- scale: 7.5
+  seed: 1522348189
+  ddim_steps: 50
+  source_prompt: a painting of a pizza
+  target_prompts:
+    - "a painting of a pizza in the Baroque style"
+    - "a painting of a pizza in the style of Futurism"
+    - "a painting of a pizza in the style of Dadaism"
+    - "a painting of a pizza in the style of Art Nouveau"
+    - "a painting of a pizza in the style of Minimalism"
+
+- scale: 7.5
+  seed: 4247313151
+  ddim_steps: 50
+  source_prompt: an embroidery of a pizza
+  target_prompts:
+    - "an embroidery of a pizza in the style of Renaissance painting"
+    - "an embroidery of a pizza in the style of Cubism"
+    - "an embroidery of a pizza in the style of Surrealism"
+    - "an embroidery of a pizza in the style of Pop Art"
+    - "an embroidery of a pizza in the style of Impressionism"
+
+- scale: 7.5
+  seed: 2868380347
+  ddim_steps: 50
+  source_prompt: a deviantart of a violin
+  target_prompts:
+    - "a deviantart of a violin in the Baroque style"
+    - "a deviantart of a violin in the style of Futurism"
+    - "a deviantart of a violin in the style of Dadaism"
+    - "a deviantart of a violin in the style of Art Nouveau"
+    - "a deviantart of a violin in the style of Minimalism"
+
+- scale: 7.5
+  seed: 1624444
+  ddim_steps: 50
+  source_prompt: a toy of a violin
+  target_prompts:
+    - "a toy of a violin in the style of Renaissance painting"
+    - "a toy of a violin in the style of Cubism"
+    - "a toy of a violin in the style of Surrealism"
+    - "a toy of a violin in the style of Pop Art"
+    - "a toy of a violin in the style of Impressionism"
+
+- scale: 7.5
+  seed: 3816125479
+  ddim_steps: 50
+  source_prompt: an art of a violin
+  target_prompts:
+    - "an art of a violin in the style of Baroque style"
+    - "an art of a violin in the style of Futurism"
+    - "an art of a violin in the style of Dadaism"
+    - "an art of a violin in the style of Art Nouveau"
+    - "an art of a violin in the style of Minimalism"
+
+- scale: 7.5
+  seed: 11434366
+  ddim_steps: 50
+  source_prompt: a painting of a panda
+  target_prompts:
+    - "a painting of a panda in the style of Renaissance painting"
+    - "a painting of a panda in the style of Cubism"
+    - "a painting of a panda in the style of Surrealism"
+    - "a painting of a panda in the style of Pop Art"
+    - "a painting of a panda in the style of Impressionism"
+
+- scale: 7.5
+  seed: 23859
+  ddim_steps: 50
+  source_prompt: a photo of a panda
+  target_prompts:
+    - "a photo of a panda in the style of Baroque style"
+    - "a photo of a panda in the style of Futurism"
+    - "a photo of a panda in the style of Dadaism"
+    - "a photo of a panda in the style of Art Nouveau"
+    - "a photo of a panda in the style of Minimalism"
+
+- scale: 7.5
+  seed: 867489631
+  ddim_steps: 50
+  source_prompt: a tattoo of a panda
+  target_prompts:
+    - "a tattoo of a panda in the style of Renaissance painting"
+    - "a tattoo of a panda in the style of Cubism"
+    - "a tattoo of a panda in the style of Surrealism"
+    - "a tattoo of a panda in the style of Pop Art"
+    - "a tattoo of a panda in the style of Impressionism"
+
+- scale: 7.5
+  seed: 609169648
+  ddim_steps: 50
+  source_prompt: a tattoo of a hummingbird
+  target_prompts:
+    - "a tattoo of a hummingbird in the style of Baroque style"
+    - "a tattoo of a hummingbird in the style of Futurism"
+    - "a tattoo of a hummingbird in the style of Dadaism"
+    - "a tattoo of a hummingbird in the style of Art Nouveau"
+    - "a tattoo of a hummingbird in the style of Minimalism"
+
+- scale: 7.5
+  seed: 1772388842
+  ddim_steps: 50
+  source_prompt: a photo of a hummingbird
+  target_prompts:
+    - "a photo of a hummingbird in the style of Renaissance painting"
+    - "a photo of a hummingbird in the style of Cubism"
+    - "a photo of a hummingbird in the style of Surrealism"
+    - "a photo of a hummingbird in the style of Pop Art"
+    - "a photo of a hummingbird in the style of Impressionism"
+
+- scale: 7.5
+  seed: 2231563761
+  ddim_steps: 50
+  source_prompt: a video-game of a hummingbird
+  target_prompts:
+    - "a video-game of a hummingbird in the style of Baroque style"
+    - "a video-game of a hummingbird in the style of Futurism"
+    - "a video-game of a hummingbird in the style of Dadaism"
+    - "a video-game of a hummingbird in the style of Art Nouveau"
+    - "a video-game of a hummingbird in the style of Minimalism"

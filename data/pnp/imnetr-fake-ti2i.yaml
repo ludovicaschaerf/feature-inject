@@ -1,0 +1,329 @@
+- scale: 7.5
+  seed: 2757905295
+  ddim_steps: 50
+  source_prompt: a pattern of a penguin
+  target_prompts:
+    - a sculpture of a penguin
+    - a photo of a penguin
+    - a toy of a penguin
+    - an origami of a bustard
+    - a sculpture of a hummingbird
+
+- scale: 7.5
+  seed: 3668101421
+  ddim_steps: 50
+  source_prompt: "a toy of a penguin"
+  target_prompts:
+    - "a painting of a penguin"
+    - "a photo of a penguin"
+    - "a tattoo of a penguin"
+    - "an art of a crane"
+    - "an origami of a hummingbird"
+
+- scale: 7.5
+  seed: 2776777070
+  ddim_steps: 50
+  source_prompt: a graphic of a penguin
+  target_prompts:
+    - an origami of a penguin
+    - a graffiti of a penguin
+    - a toy of a penguin
+    - an image of a hummingbird
+    - an embroidery of a egret
+
+- scale: 7.5
+  seed: 726348123
+  ddim_steps: 50
+  source_prompt: a sketch of a husky
+  target_prompts:
+    - a graffiti of a husky
+    - a sculpture of a husky
+    - an image of a husky
+    - a painting of a tiger
+    - a toy of a poodle
+
+- scale: 7.5
+  seed: 4122336101
+  ddim_steps: 50
+  source_prompt: an origami of a husky
+  target_prompts:
+    - a graffiti of a husky
+    - a sculpture of a husky
+    - a painting of a husky
+    - a photo of a poodle
+    - a cartoon of a bear
+
+- scale: 7.5
+  seed: 1987290896
+  ddim_steps: 50
+  source_prompt: a cartoon of a husky
+  target_prompts:
+    - an embroidery of a husky
+    - a tattoo of a husky
+    - a toy of a husky
+    - a sculpture of a bear
+    - a photo of a lion
+
+- scale: 7.5
+  seed: 3815346202
+  ddim_steps: 50
+  source_prompt: a cartoon of a goldfish
+  target_prompts:
+    - an embroidery of a goldfish
+    - a sculpture of a goldfish
+    - a graffiti of a goldfish
+    - an origami of a shark
+    - a tattoo of a tuna
+
+- scale: 7.5
+  seed: 2554124655
+  ddim_steps: 50
+  source_prompt: a sketch of a goldfish
+  target_prompts:
+    - a graffiti of a goldfish
+    - an embroidery of a goldfish
+    - a photo of a goldfish
+    - a sculpture of a parrotfish
+    - a toy of an eel
+
+- scale: 7.5
+  seed: 753930922
+  ddim_steps: 50
+  source_prompt: a deviantart of a goldfish
+  target_prompts:
+    - a toy of a goldfish
+    - a tattoo of a goldfish
+    - an embroidery of a goldfish
+    - a sculpture of an eel
+    - an origami of a tuna
+
+- scale: 7.5
+  seed: 42005919
+  ddim_steps: 50
+  source_prompt: a toy of a cat
+  target_prompts:
+    - an origami of a cat
+    - a sketch of a cat
+    - an art of a cat
+    - a photo of a poodle
+    - a cartoon of a tiger
+
+- scale: 7.5
+  seed: 149937726
+  ddim_steps: 50
+  source_prompt: an art of a cat
+  target_prompts:
+    - a photo of a cat
+    - an origami of a cat
+    - a sculpture of a cat
+    - an image of a bear
+    - a tattoo of a tiger
+
+- scale: 7.5
+  seed: 1000723
+  ddim_steps: 50
+  source_prompt: a photo of a cat
+  target_prompts:
+    - a toy of a cat
+    - a cartoon of a cat
+    - an origami of a cat
+    - an embroidery of a lion
+    - a graffiti of a tiger
+
+- scale: 7.5
+  seed: 1888106009
+  ddim_steps: 50
+  source_prompt: an image of a jeep
+  target_prompts:
+    - a painting of a jeep
+    - a sketch of a jeep
+    - an embroidery of a jeep
+    - a cartoon of a minivan
+    - an art of a tractor
+
+- scale: 7.5
+  seed: 294330877
+  ddim_steps: 50
+  source_prompt: a painting of a jeep
+  target_prompts:
+    - a sketch of a jeep
+    - a sculpture of a jeep
+    - an image of a jeep
+    - an embroidery of an ambulance
+    - a deviantart of a fire-truck
+
+- scale: 7.5
+  seed: 22211093
+  ddim_steps: 50
+  source_prompt: a cartoon of a jeep
+  target_prompts:
+    - an image of a jeep
+    - a graffiti of a jeep
+    - a toy of a jeep
+    - an embroidery of a tractor
+    - a sculpture of a pickup
+
+- scale: 7.5
+  seed: 174785024
+  ddim_steps: 50
+  source_prompt: an embroidery of a castle
+  target_prompts:
+    - a graffiti of a castle
+    - an art of a castle
+    - a photo of a castle
+    - a tattoo of a shrine
+    - a toy of a church
+
+- scale: 7.5
+  seed: 1001793435
+  ddim_steps: 50
+  source_prompt: a sketch of a castle
+  target_prompts:
+    - a photo of a castle
+    - an image of a castle
+    - an origami of a castle
+    - a toy of a temple
+    - a sculpture of a church
+
+- scale: 7.5
+  seed: 3643750434
+  ddim_steps: 50
+  source_prompt: a deviantart of a castle
+  target_prompts:
+    - a tattoo of a castle
+    - an origami of a castle
+    - a graffiti of a castle
+    - a toy of a church
+    - a sculpture of a pagoda
+
+- scale: 7.5
+  seed: 312986111
+  ddim_steps: 50
+  source_prompt: a photo of a pizza
+  target_prompts:
+    - a sculpture of a pizza
+    - a cartoon of a pizza
+    - a painting of a pizza
+    - an embroidery of a rock
+    - an image of a pancake
+
+- scale: 7.5
+  seed: 1522348189
+  ddim_steps: 50
+  source_prompt: a painting of a pizza
+  target_prompts:
+    - a photo of a pizza
+    - a sculpture of a pizza
+    - a graffiti of a pizza
+    - an embroidery of a pancake
+    - an image of a cake
+
+- scale: 7.5
+  seed: 4247313151
+  ddim_steps: 50
+  source_prompt: an embroidery of a pizza
+  target_prompts:
+    - a deviantart of a pizza
+    - a cartoon of a pizza
+    - a photo of a pizza
+    - a toy of a cookie
+    - an art of a baloon
+
+- scale: 7.5
+  seed: 2868380347
+  ddim_steps: 50
+  source_prompt: a deviantart of a violin
+  target_prompts:
+    - a graffiti of a violin
+    - a tattoo of a violin
+    - an image of a violin
+    - a photo of a ukulele
+    - a sculpture of a guitar
+
+- scale: 7.5
+  seed: 1624444
+  ddim_steps: 50
+  source_prompt: a toy of a violin
+  target_prompts:
+    - an embroidery of a violin
+    - a painting of a violin
+    - a sketch of a violin
+    - a cartoon of a guitar
+    - a painting of a cello
+
+- scale: 7.5
+  seed: 3816125479
+  ddim_steps: 50
+  source_prompt: an art of a violin
+  target_prompts:
+    - a sculpture of a violin
+    - a photo of a violin
+    - a sketch of a violin
+    - an embroidery of a banjo
+    - a graffiti of a viola
+
+- scale: 7.5
+  seed: 11434366
+  ddim_steps: 50
+  source_prompt: a painting of a panda
+  target_prompts:
+    - a tattoo of a panda
+    - a sculpture of a panda
+    - a photo of a panda
+    - an origami of a bear
+    - an image of a bobcat
+
+- scale: 7.5
+  seed: 23859
+  ddim_steps: 50
+  source_prompt: a photo of a panda
+  target_prompts:
+    - a cartoon of a panda
+    - a graffiti of a panda
+    - a tattoo of a panda
+    - a painting of a tiger
+    - a deviantart of a dog
+
+- scale: 7.5
+  seed: 867489631
+  ddim_steps: 50
+  source_prompt: a tattoo of a panda
+  target_prompts:
+    - a sketch of a panda
+    - a sculpture of a panda
+    - a painting of a panda
+    - a deviantart of a dog
+    - an art of a leopard
+
+- scale: 7.5
+  seed: 609169648
+  ddim_steps: 50
+  source_prompt: a tattoo of a hummingbird
+  target_prompts:
+    - a sculpture of a hummingbird
+    - a toy of a hummingbird
+    - a painting of a hummingbird
+    - a sketch of a parrot
+    - a deviantart of a crane
+
+- scale: 7.5
+  seed: 1772388842
+  ddim_steps: 50
+  source_prompt: a photo of a hummingbird
+  target_prompts:
+    - a sculpture of a hummingbird
+    - a tattoo of a hummingbird
+    - an embroidery of a hummingbird
+    - a toy of a crane
+    - a cartoon of a bustard
+
+- scale: 7.5
+  seed: 2231563761
+  ddim_steps: 50
+  source_prompt: a video-game of a hummingbird
+  target_prompts:
+    - a toy of a hummingbird
+    - an origami of a hummingbird
+    - a tattoo of a hummingbird
+    - a sketch of a pigeon
+    - a cartoon of a egret

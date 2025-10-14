@@ -1,0 +1,216 @@
+# horse in mud
+- source_prompt: a photo of a horse in mud
+  seed: 50
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a zebra in the snow
+    - a photo of a husky on the grass
+    - an oil painting of a white horse
+    - a photo of a blue horse toy in playroom
+
+# Spider man
+- source_prompt: a photo of spider man in superhero pose
+  seed: 90
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a robot in superhero pose
+    - a photo of a wooden statue in superhero pose
+    - a sketch of a panda in superhero pose
+
+# Two cats
+- source_prompt: a photo of two cats in the garden
+  seed: 50
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of two mice on the street
+    - a photo of two bears in a forest
+    - a photo of two bunnies in the snow
+
+# White tesla
+- source_prompt: a photo of a white Tesla
+  seed: 62
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a wooden car
+    - a drawing of a red sports car
+    - a photo of a green toy car
+
+# three foxes
+- source_prompt: a photo of three foxes
+  seed: 123
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of three wolves in the snow
+    - a cartoon of three lions sitting on the grass
+    - a painting of three white robots
+
+# christmas trees
+- source_prompt: a photo of christmas trees above snow
+  seed: 3000
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of rocks above a lake
+    - a photo of pyramids above sand
+    - a photo of buildings in NYC
+    - a photo of colorful clown hats
+
+# bunny doll
+- source_prompt: a photo of a blue bunny doll
+  seed: 1010
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a cute teddy bear sitting on the grass
+    - a photo of a bronze sculpture sitting in the snow
+    - a photo of a red bunny robot
+    - a photo of winnie the pooh
+
+# white bird
+- source_prompt: a photo of a white bird on the grass
+  seed: 1010
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a blue robot bird in the snow
+    - a photo of a hummingbird on sand
+    - a photo of a brown eagle on a rock
+    - a polygonal illustration of a colorful bird
+
+# green ducks
+- source_prompt: a photo of green ducks walking on street
+  seed: 7000
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of golden birds walking in NYC
+    - a photo of rubber ducks walking on street
+    - a photo of silver robots walking in the desert
+
+# Cake
+- source_prompt: a photo of a cake
+  seed: 30
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a cartoon of a pistachio cake
+    - a photo of a rock on the grass
+    - a photo of a building in the snow
+
+# songbird
+- source_prompt: a beautiful image of a song bird
+  seed: 77
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a beautiful animation of an eagle
+    - a beautiful image of a sparrow bird
+    - a photo of a robot
+
+# sand cars
+- source_prompt: a photo of a car made of sand
+  seed: 800
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a green car made of wood
+    - a photo of a sculpture of a car made of steel in museum
+    - a photo of a car made of ice on the grass
+
+- source_prompt: a photo of a car made of sand
+  seed: 3003
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a green car made of wood
+    - a photo of a sculpture of a car made of steel in museum
+    - a photo of a car made of ice on the grass
+
+# black bycicle
+- source_prompt: a photo of a black bicycle
+  seed: 9090
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a red motorcycle in the snow
+    - a photo of a blue toy bicycle on the grass
+    - a photo of a wooden bicycle in the snow
+
+# cat face
+- source_prompt: a photo of a cat face
+  seed: 500
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a polygonal illustration of a cat face
+    - a photo of a panda face
+    - a photo of a dalmatian face
+
+# mouse painting
+- source_prompt: a painting of a gray mouse
+  seed: 12
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a brown dog in the snow
+    - a photo of a golden robot
+    - a photo of a cat on the moon
+
+# fish drawing
+- source_prompt: a drawing of goldfishes in the ocean
+  seed: 500
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - a photo of sharks in the ocean
+    - a polygonal illustration of fish in the ocean
+    - a photo of transparent fish in the ocean
+
+# Minimal bird
+- source_prompt: a minimal drawing of a bird
+  seed: 77
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a realistic image of a song bird in a forest
+    - a polygonal illustration of a bird
+    - a pixar animation of a bird
+    - a realistic image of a hummingbird in the snow
+
+# blue car cartoon
+
+- source_prompt: a cartoon of a blue car
+  seed: 310
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a silver toy car on sand
+    - a photo of a wooden car on the grass
+    - a photo of a red car in the snow
+
+# sketch mountain
+- source_prompt: a sketch of a mountain
+  seed: 310
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photo of a mountain above a lake
+    - a cartoon of a mountain by a forest
+    - a photo of a pyramid in the desert
+
+# silhouette cat
+- source_prompt: a silhouette drawing of a cat
+  seed: 610
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - a photorealistic image of a cat sitting in the grass
+    - an animation of a cat on the moon
+    - a polygonal illustration of a cat
+    - a polygonal illustration of a tiger
+    - a photorealistic image of a colorful cat sculpture

@@ -1,0 +1,215 @@
+# horse in mud
+- source_prompt: a photo of a horse in mud
+  seed: 50
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - An Renaissance painting image
+    - An Cubism image
+    - An Surrealism image
+    - An Pop Art image
+
+# Spider man
+- source_prompt: a photo of spider man in superhero pose
+  seed: 90
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - An Impressionism image
+    - An Baroque style image
+    - An Futurism image
+
+# Two cats
+- source_prompt: a photo of two cats in the garden
+  seed: 50
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Dadaism image
+    - An Art Nouveau image
+    - An Minimalism image
+
+# White tesla
+- source_prompt: a photo of a white Tesla
+  seed: 62
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Chinese Ink image
+    - An Embroidery Art image
+    - An Oil Painting image
+
+# three foxes
+- source_prompt: a photo of three foxes
+  seed: 123
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Watercolor Painting image
+    - An Studio Ghibli image
+    - An Cyberpunk image
+
+# christmas trees
+- source_prompt: a photo of christmas trees above snow
+  seed: 3000
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Pixel Punk image
+    - An Wasteland image
+    - An Sketching image
+    - An Renaissance painting image
+
+# bunny doll
+- source_prompt: a photo of a blue bunny doll
+  seed: 1010
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Cubism image
+    - An Surrealism image
+    - An Pop Art image
+    - An Impressionism image
+
+# white bird
+- source_prompt: a photo of a white bird on the grass
+  seed: 1010
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Baroque style image
+    - An Futurism image
+    - An Dadaism image
+    - An Art Nouveau image
+
+# green ducks
+- source_prompt: a photo of green ducks walking on street
+  seed: 7000
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Minimalism image
+    - An Chinese Ink image
+    - An Embroidery Art image
+
+# Cake
+- source_prompt: a photo of a cake
+  seed: 30
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Oil Painting image
+    - An Watercolor Painting image
+    - An Studio Ghibli image
+
+# songbird
+- source_prompt: a beautiful image of a song bird
+  seed: 77
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Cyberpunk image
+    - An Pixel Punk image
+    - An Wasteland image
+
+# sand cars
+- source_prompt: a photo of a car made of sand
+  seed: 800
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Sketching image
+    - An Renaissance painting image
+    - An Cubism image
+
+- source_prompt: a photo of a car made of sand
+  seed: 3003
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Surrealism image
+    - An Pop Art image
+    - An Impressionism image
+
+# black bycicle
+- source_prompt: a photo of a black bicycle
+  seed: 9090
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - An Baroque style image
+    - An Futurism image
+    - An Dadaism image
+
+# cat face
+- source_prompt: a photo of a cat face
+  seed: 500
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Art Nouveau image
+    - An Minimalism image
+    - An Chinese Ink image
+
+# mouse painting
+- source_prompt: a painting of a gray mouse
+  seed: 12
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Embroidery Art image
+    - An Oil Painting image
+    - An Watercolor Painting image
+
+# fish drawing
+- source_prompt: a drawing of goldfishes in the ocean
+  seed: 500
+  scale: 5.0
+  ddim_steps: 50
+  target_prompts:
+    - An Studio Ghibli image
+    - An Cyberpunk image
+    - An Pixel Punk image
+
+# Minimal bird
+- source_prompt: a minimal drawing of a bird
+  seed: 77
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Wasteland image
+    - An Sketching image
+    - An Renaissance painting image
+    - An Cubism image
+
+# blue car cartoon
+- source_prompt: a cartoon of a blue car
+  seed: 310
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Surrealism image
+    - An Pop Art image
+    - An Impressionism image
+
+# sketch mountain
+- source_prompt: a sketch of a mountain
+  seed: 310
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Baroque style image
+    - An Futurism image
+    - An Dadaism image
+
+# silhouette cat
+- source_prompt: a silhouette drawing of a cat
+  seed: 610
+  scale: 7.5
+  ddim_steps: 50
+  target_prompts:
+    - An Art Nouveau image
+    - An Minimalism image
+    - An Chinese Ink image
+    - An Embroidery Art image
+    - An Oil Painting image
