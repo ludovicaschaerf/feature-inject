@@ -15,6 +15,9 @@ Requires:
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import json
+import gc
+from argparse import Namespace
 
 from src.hooked_sd_pipeline import ModifiedStableDiffusionPipeline
 
@@ -65,7 +68,6 @@ def remove_skip_hooks(hook_refs):
             if hasattr(module, attr):
                 delattr(module, attr)
 
-
 def run_pipeline(pipe, prompt: str, num_inference_steps: int, image_size: int, generator, guidance_scale: float):
     """
     Run inference with the given diffusion pipeline.
@@ -90,7 +92,6 @@ def run_pipeline(pipe, prompt: str, num_inference_steps: int, image_size: int, g
         guidance_scale=guidance_scale,
     )
 
-
 def save_image(image, output_filename: str):
     """
     Save the given image (a PIL image) to the specified file.
@@ -101,7 +102,6 @@ def save_image(image, output_filename: str):
     """
     image.save(output_filename)
     print(f"Saved image as '{output_filename}'.")
-
 
 def register_skip_hooks(pipe, injected_skips, selected_skip_keys, switch_guidance, num_inference_steps, timesteps):
     """
@@ -237,3 +237,109 @@ def plot_results(image_a, final_image, final_image_B, output_filename: str):
     fig.suptitle(os.path.basename(output_filename).replace(".png", ""))
     plt.savefig(output_filename)
     print(f"Saved subplot image as '{output_filename}'.")
+    plt.close()
+
+def generate_triplet(
+    source_prompt: str,
+    target_prompt: str,
+    output_folder: str,
+    model: str,
+    model_name: str,
+    variant: str,
+    device: str,
+    image_size: int,
+    selected_skip_keys: list,
+    main_fn,
+    float_: bool = False,
+    scale: float = 7.5,
+    seed: int = 0,
+    ddim_steps: int = 50,
+):
+    """
+    Generate a triplet of images (original, edit, and target) for two prompts.
+    
+    Args:
+        source_prompt (str): The source/original prompt.
+        target_prompt (str): The target/edit prompt.
+        output_folder (str): Directory to save results.
+        model (str): Model identifier (e.g., 'sd15', 'turbo', etc.).
+        model_name (str): Model name used by the diffusion pipeline.
+        variant (str): Model variant.
+        device (str): Device ('cuda', 'cpu', etc.).
+        image_size (int): Output image size.
+        selected_skip_keys (list): List of skip keys for the model.
+        main_fn (callable): The main generation function.
+        float_ (bool): Whether to use float precision.
+        scale (float): Guidance scale.
+        seed (int): Random seed.
+        ddim_steps (int): Number of diffusion steps.
+    """
+
+    
+    # Adjust parameters based on model type
+    if 'turbo' in model or 'schnell' in model:
+        scale = 0.0
+        ddim_steps = 3
+
+    if 'kandinsky' in model:
+        ddim_steps = min(ddim_steps, 30)
+
+    print(f"\n--- Generating Triplet ---")
+    print(f"scale={scale}, seed={seed}, ddim_steps={ddim_steps}")
+    print(f"source_prompt='{source_prompt}'")
+    print(f"target_prompt='{target_prompt}'")
+   
+    # ---- Generate A & B ----
+    base_args = {
+        'out_dir': output_folder,
+        'prompt_A': target_prompt,
+        'variant': variant,
+        'device': device,
+        'prompt_B': source_prompt,
+        'image_size': image_size,
+        'model': model,
+        'model_name': model_name,
+        'guidance_scale': scale,
+        'num_inference_steps': ddim_steps,
+        'seed': seed,
+        'float': float_,
+        'timesteps': [1000, 0],
+        'switch_guidance': {},
+        'selected_skip_keys': selected_skip_keys[0]
+    }
+
+    print(f"Generating A & B for '{source_prompt}' -> '{target_prompt}'")
+    image_A, image_B, injected_skips, pipe_B = main_fn(Namespace(**base_args), save_results=False, save_b=True)
+    
+    # ---- Generate C ----
+    switch_guidance_list = [{}]
+    timestep_list = [[1000, 200]]
+
+    for skips in selected_skip_keys:
+        skip_tag = f"skips_{'_'.join([s.split('.')[-1] +'_' + s.split('.')[-3] for s in skips])}"
+
+        for sg, ts in zip(switch_guidance_list, timestep_list):
+            hyper_args = base_args.copy()
+            hyper_args.update({
+                'switch_guidance': sg,
+                'timesteps': ts,
+                'selected_skip_keys': skips
+            })
+
+            print(f"Generating C with skip={skip_tag}, SG={sg}, timesteps={ts}")
+            image_C = main_fn(Namespace(**hyper_args), injected_skips=injected_skips, pipe_B=pipe_B, save_results=False)
+
+            
+    del pipe_B
+    gc.collect()
+
+    plot_results(
+        image_A,
+        image_B,
+        image_C,
+        os.path.join(
+            output_folder,
+            f"triplet_seed{seed}_steps{ddim_steps}_scale{scale}_{skip_tag}.png"
+        )
+    )
+    
