@@ -328,18 +328,19 @@ def generate_triplet(
 
             print(f"Generating C with skip={skip_tag}, SG={sg}, timesteps={ts}")
             image_C = main_fn(Namespace(**hyper_args), injected_skips=injected_skips, pipe_B=pipe_B, save_results=False)
-
+            os.makedirs(output_folder, exist_ok=True)
+            plot_results(
+                image_A,
+                image_B,
+                image_C,
+                os.path.join(
+                    output_folder,
+                    f"triplet_seed{seed}_steps{ddim_steps}_scale{scale}_{skip_tag}.png"
+                )
+            )
+            
             
     del pipe_B
     gc.collect()
 
-    plot_results(
-        image_A,
-        image_B,
-        image_C,
-        os.path.join(
-            output_folder,
-            f"triplet_seed{seed}_steps{ddim_steps}_scale{scale}_{skip_tag}.png"
-        )
-    )
     

@@ -1,4 +1,6 @@
 outputs/
+outputs_test_2/
+outputs_test_large/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
