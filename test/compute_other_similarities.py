@@ -125,7 +125,7 @@ def compute_cv_similarities(image1_path, image2_path):
 
 def main():
     # Top-level outputs folder
-    outputs_dir = "../outputs_test_large"
+    outputs_dir = "../outputs_test_2"
 
     # Process each subfolder containing the experiment data
     for subfolder in tqdm(os.listdir(outputs_dir)):

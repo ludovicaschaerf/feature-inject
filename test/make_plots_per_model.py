@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 def natural_key(key):
     # Helper for natural sorting (e.g., "down_blocks.0.resnets.0")
+    key = key.split('_unet')[0].replace('unet.','')
     parts = key.split('.')
     key_list = []
     for part in parts:
@@ -15,7 +16,7 @@ def natural_key(key):
     return key_list
 
 # Define the base folder and file pattern.
-base_folder = "ICLR/stabilityai/stable-diffusion-xl-base-1.0"
+base_folder = "../outputs_test_large/averages/unknown_model"
 pattern = os.path.join(base_folder, "**", "cv_similarities_aggregated_fraction_data_with_ci.json")
 file_list = glob.glob(pattern, recursive=True)
 
@@ -34,10 +35,14 @@ for file_path in file_list:
             feature_data[feature] = {}
         # Get the sorted layer names.
         layer_names = sorted(layers_dict.keys(), key=natural_key)
+        layer_names_new = []
         normA_vals, normB_vals = [], []
         errA_vals, errB_vals = [], []
         
         for layer in layer_names:
+            len_layer = len(layer.split('_unet'))
+            if len_layer > 1:
+                continue
             entry = layers_dict[layer]
             meanA = entry["meanA"]
             meanB = entry["meanB"]
@@ -55,9 +60,10 @@ for file_path in file_list:
             normB_vals.append(normB)
             errA_vals.append(norm_ciA)
             errB_vals.append(norm_ciB)
+            layer_names_new.append(layer)
         
         feature_data[feature][model_name] = {
-            "layers": layer_names,
+            "layers": layer_names_new,
             "normA": normA_vals,
             "normB": normB_vals,
             "errA": errA_vals,
@@ -73,37 +79,27 @@ for feature, model_dict in feature_data.items():
             models_data[model_name] = {}
         models_data[model_name][feature] = d
 
+print(models_data)
 # For each model, create a single plot overlaying curves for each feature.
 for model_name, features in models_data.items():
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(20, 14))
     # Use a color cycle to assign a unique color per feature.
     color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
     for i, (feature, d) in enumerate(features.items()):
-        if feature != "ssim":
-            continue  # Only plot "ssim" feature as per request
+        #if feature != "ssim":
+        #    continue  # Only plot "ssim" feature as per request
         color = color_cycle[i % len(color_cycle)]
         x = list(range(len(d["layers"])))
-        # Plot normalized meanA for this feature (marker 'o').
-        # plt.errorbar(
-        #     x,
-        #     d["normA"],
-        #     yerr=d["errA"],
-        #     marker='o',
-        #     linestyle='-',
-        #     capsize=3,
-        #     color=color,
-        #     label=f"{feature} - A"
-        # )
         # Plot normalized meanB for this feature (marker 's').
         plt.errorbar(
             x,
             d["normB"],
             yerr=d["errB"],
             marker='s',
-            linestyle='--',
+            linestyle='-',
             # line size thicker
-            linewidth=5,
-            capsize=3,
+            linewidth=1,
+            capsize=1,
             color=color,
             label=f"{feature}"
         )
@@ -119,12 +115,6 @@ for model_name, features in models_data.items():
         feature_data_entry["layers"] = sorted_layers
 
     plt.xticks(range(len(sorted_layers)), sorted_layers, rotation=45, ha="right")
-
-    # Use the layer names from the first feature (assumed consistent) for x-tick labels.
-    #first_feature = next(iter(features.values()))
-    #num_layers = len(first_feature["layers"])
-    
-    #plt.xticks(range(num_layers), first_feature["layers"], rotation=45, ha="right")
     
     plt.title(f"Model: {model_name}")
     plt.xlabel("Layer")
