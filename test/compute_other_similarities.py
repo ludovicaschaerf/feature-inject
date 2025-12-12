@@ -7,51 +7,6 @@ from skimage.metrics import structural_similarity as compare_ssim
 from skimage.feature import local_binary_pattern
 from tqdm import tqdm 
 
-def plot_stacked_bar(layer_names,
-                     simA_list,
-                     simB_list,
-                     title,
-                     output_path,
-                     legend_A="Similarity with Ref A",
-                     legend_B="Similarity with Ref B",
-                     normalize_sum_to_1=True):
-    """
-    Creates a stacked bar plot with:
-      - X-axis: layer_names
-      - Y-axis: simA + simB (or normalized to 1 if normalize_sum_to_1=True)
-      - Lower (orange) bar: simA
-      - Upper (blue) bar: simB
-    """
-    if normalize_sum_to_1:
-        normA = []
-        normB = []
-        for a, b in zip(simA_list, simB_list):
-            s = a + b
-            if s > 0:
-                normA.append(a / s)
-                normB.append(b / s)
-            else:
-                normA.append(0.0)
-                normB.append(0.0)
-        simA_list = normA
-        simB_list = normB
-
-    x_positions = np.arange(len(layer_names))
-    simA_array = np.array(simA_list)
-    simB_array = np.array(simB_list)
-
-    plt.figure(figsize=(10, 5))
-    plt.bar(x_positions, simA_array, color='orange', label=legend_A)
-    plt.bar(x_positions, simB_array, bottom=simA_array, color='blue', label=legend_B)
-    plt.title(title)
-    plt.xlabel("Layer")
-    plt.ylabel("Similarity" if not normalize_sum_to_1 else "Proportion of Similarity")
-    plt.xticks(x_positions, layer_names, rotation=45, ha="right")
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(output_path)
-    plt.close()
-
 def compute_cv_similarities(image1_path, image2_path):
     """
     Computes four similarity metrics between two images:
@@ -125,7 +80,7 @@ def compute_cv_similarities(image1_path, image2_path):
 
 def main():
     # Top-level outputs folder
-    outputs_dir = "../outputs_test_2"
+    outputs_dir = "outputs_kandinsky-2-2-decoder_controlled"
 
     # Process each subfolder containing the experiment data
     for subfolder in tqdm(os.listdir(outputs_dir)):
@@ -216,22 +171,7 @@ def main():
                 # Save the similarities into a JSON file
                 with open(out_json_path, "w") as f:
                     json.dump(similarities_dict, f, indent=4)
-
-                # Determine a sorted order for the layers (injected images)
-                #layer_order = sorted(metric_sims["ssim"].keys())
-
-                # For each metric, create and save a separate stacked bar plot
-                #for metric in ["ssim", "keypoint", "color", "texture"]:
-                #    simA_values = [metric_sims[metric][layer][0] for layer in layer_order]
-                #    simB_values = [metric_sims[metric][layer][1] for layer in layer_order]
-                #    bar_title = f"OpenCV {metric.capitalize()} Similarities\n{subfolder}"
-                #    bar_path = os.path.join(subfolder_path, f"cv_similarities_bar_{metric}.png")
-                #    plot_stacked_bar(layer_order, simA_values, simB_values,
-                #                    title=bar_title,
-                #                    output_path=bar_path,
-                #                    legend_A="Similarity with Ref A",
-                #                    legend_B="Similarity with Ref B")
-                
+            
                 print(f"Processed {subfolder}. Saved JSON and bar plots in {subfolder_path}.")
 
             except Exception as e:

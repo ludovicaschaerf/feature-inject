@@ -2,6 +2,8 @@ import os
 import glob
 import json
 import matplotlib.pyplot as plt
+import numpy as np
+
 
 def natural_key(key):
     # Helper for natural sorting (e.g., "down_blocks.0.resnets.0")
@@ -13,21 +15,29 @@ def natural_key(key):
             key_list.append(int(part))
         except ValueError:
             key_list.append(part)
+    key_list_temp = key_list[-2]
+    key_list[-2] = key_list[-1]
+    key_list[-1] = key_list_temp
+    #print(key_list)
     return key_list
 
 # Define the base folder and file pattern.
-base_folder = "../outputs_test_large/averages/unknown_model"
-pattern = os.path.join(base_folder, "**", "cv_similarities_aggregated_fraction_data_with_ci.json")
+model = 'outputs_stable-diffusion-v1-4_controlled'
+metrics = 'results'
+base_folder = f"outputs_per_model/{model}/averages/{model}"
+pattern = os.path.join(base_folder, f"{metrics}_aggregated_fraction_data_with_ci.json")
 file_list = glob.glob(pattern, recursive=True)
 
+print(file_list)
 # Build a dictionary organized by feature.
 # Structure: { feature: { model_name: { 'layers': [...], 'normA': [...], 'normB': [...], 'errA': [...], 'errB': [...] } } }
 feature_data = {}
+
 for file_path in file_list:
     with open(file_path, 'r') as f:
         data = json.load(f)
     
-    model_name = data.get("model", os.path.basename(os.path.dirname(file_path)))
+    model_name = os.path.basename(os.path.dirname(file_path))
     text_pairs = data.get("text_pairs", {})
     
     for feature, layers_dict in text_pairs.items():
@@ -48,20 +58,13 @@ for file_path in file_list:
             meanB = entry["meanB"]
             ciA = entry.get("ciA", 0)
             ciB = entry.get("ciB", 0)
-            total = meanA + meanB
-            if total == 0:
-                normA, normB, norm_ciA, norm_ciB = 0, 0, 0, 0
-            else:
-                normA = meanA / total
-                normB = meanB / total
-                norm_ciA = ciA / total
-                norm_ciB = ciB / total
-            normA_vals.append(normA)
-            normB_vals.append(normB)
-            errA_vals.append(norm_ciA)
-            errB_vals.append(norm_ciB)
+            
+            normA_vals.append(meanA)
+            normB_vals.append(meanB)
+            errA_vals.append(ciA)
+            errB_vals.append(ciB)
             layer_names_new.append(layer)
-        
+
         feature_data[feature][model_name] = {
             "layers": layer_names_new,
             "normA": normA_vals,
@@ -71,7 +74,6 @@ for file_path in file_list:
         }
 
 # Reorganize the data by model.
-# Structure: { model_name: { feature: { ... } } }
 models_data = {}
 for feature, model_dict in feature_data.items():
     for model_name, d in model_dict.items():
@@ -79,47 +81,46 @@ for feature, model_dict in feature_data.items():
             models_data[model_name] = {}
         models_data[model_name][feature] = d
 
-print(models_data)
-# For each model, create a single plot overlaying curves for each feature.
+
+
 for model_name, features in models_data.items():
     plt.figure(figsize=(20, 14))
-    # Use a color cycle to assign a unique color per feature.
     color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
-    for i, (feature, d) in enumerate(features.items()):
-        #if feature != "ssim":
-        #    continue  # Only plot "ssim" feature as per request
-        color = color_cycle[i % len(color_cycle)]
-        x = list(range(len(d["layers"])))
-        # Plot normalized meanB for this feature (marker 's').
-        plt.errorbar(
-            x,
-            d["normB"],
-            yerr=d["errB"],
-            marker='s',
-            linestyle='-',
-            # line size thicker
-            linewidth=1,
-            capsize=1,
-            color=color,
-            label=f"{feature}"
-        )
-    
-    # Use the layer names from the first feature, sorted naturally.
-    first_feature = next(iter(features.values()))
-    sorted_layers = sorted([x for x in first_feature["layers"]]) #int for dit
-    # Reorder the data accordingly
-    for feature_data_entry in features.values():
-        order = [feature_data_entry["layers"].index(str(l)) for l in sorted_layers]
-        for k in ["normA", "normB", "errA", "errB"]:
-            feature_data_entry[k] = [feature_data_entry[k][i] for i in order]
-        feature_data_entry["layers"] = sorted_layers
 
+    for i, (feature, d) in enumerate(features.items()):
+        if feature not in ['S_acc', 'S_pre', 'S_all']:
+            continue
+        color = color_cycle[i % len(color_cycle)]
+
+        # Original real-space sequence (meanB)
+        y = np.array(d["normB"])
+        x = np.arange(len(y))
+
+        plt.errorbar(
+                x,
+                y,
+                yerr=np.array(d["errB"]) / 10,
+                marker='s',
+                linestyle='-',
+                linewidth=1,
+                capsize=1,
+                color=color,
+                label=f"{feature}"
+        )
+        
+    # Use naturally ordered layer labels
+    first_feature = next(iter(features.values()))
+    sorted_layers = sorted(first_feature["layers"], key=natural_key)
+
+    plt.ylim(0,1)
     plt.xticks(range(len(sorted_layers)), sorted_layers, rotation=45, ha="right")
-    
-    plt.title(f"Model: {model_name}")
     plt.xlabel("Layer")
     plt.ylabel("Normalized Mean Value")
-    plt.ylim(0, 1)
-    #plt.legend()
+
+    plt.title(f"Model: {model_name}")
+    plt.legend()
     plt.tight_layout()
-    plt.savefig(os.path.join(base_folder, f"{model_name.replace('/', '_')}_normalized_values.png"))
+
+    out_name = f"{model_name.replace('/', '_')}_values.png"
+    plt.savefig(os.path.join(base_folder, out_name))
+

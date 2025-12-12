@@ -9,6 +9,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats
+from sklearn.preprocessing import RobustScaler
 
 def confidence_interval(data, confidence=0.95):
     """
@@ -26,10 +27,11 @@ def confidence_interval(data, confidence=0.95):
     return float(mean), float(ci_half_width)
 
 def main(which_sim):
-    outputs_dir = "../outputs_test_large/"
+    outputs_dir = "../outputs_per_model/outputs_stable-diffusion-xl-base-1.0_controlled/"
 
     model_data = {}
 
+    missing = 0
     # 1) Collect data from each subfolder's similarities.json
     for subfolder in os.listdir(outputs_dir):
         subfolder_path = os.path.join(outputs_dir, subfolder)
@@ -40,7 +42,7 @@ def main(which_sim):
 
         similarities_path = os.path.join(subfolder_path, which_sim)
         if not os.path.isfile(similarities_path):
-            print('No similarity file')
+            missing += 1
             continue
 
         with open(similarities_path, "r") as f:
@@ -55,14 +57,23 @@ def main(which_sim):
             }
 
         # 2) Accumulate reference image similarities
-        text_sims = similarities.get("cv_similarities", {})
+        text_sims = similarities.get(which_sim.split('.')[0], {})
         for layer_name, pair_dict in text_sims.items():
-            for pair_key, pair_vals in pair_dict.items():
-                simA = pair_vals.get("simA", 0.0)
-                simB = pair_vals.get("simB", 0.0)
-                model_data[model_name]["text_pairs"].setdefault(pair_key, {})
-                model_data[model_name]["text_pairs"][pair_key].setdefault(layer_name, []).append((simA, simB))
-                model_data[model_name]["refs"].setdefault(layer_name, []).append((simA, simB))
+            if 'new' in which_sim:
+                for pair_key in ['lpips', 'gram', 'ms_ssim']:
+                    model_data[model_name]["text_pairs"].setdefault(pair_key, {})
+                    simA = pair_dict[pair_key + '_A']
+                    simB = pair_dict[pair_key + '_B']
+                    
+                    model_data[model_name]["text_pairs"][pair_key].setdefault(layer_name, []).append((simA, simB))
+                    model_data[model_name]["refs"].setdefault(layer_name, []).append((simA, simB))
+            else:
+                for pair_key, pair_vals in pair_dict.items():
+                    simA = pair_vals.get("simA", 0.0)
+                    simB = pair_vals.get("simB", 0.0)
+                    model_data[model_name]["text_pairs"].setdefault(pair_key, {})
+                    model_data[model_name]["text_pairs"][pair_key].setdefault(layer_name, []).append((simA, simB))
+                    model_data[model_name]["refs"].setdefault(layer_name, []).append((simA, simB))
         model_data[model_name]["count"] += 1
             
         # 2) Accumulate reference image similarities
@@ -81,7 +92,8 @@ def main(which_sim):
                 simB = pair_vals.get("simB", 0.0)
                 model_data[model_name]["text_pairs"].setdefault(pair_key, {})
                 model_data[model_name]["text_pairs"][pair_key].setdefault(layer_name, []).append((simA, simB))
-    
+
+    print(missing)
     # 4) For each model, compute fraction means & confidence intervals, produce stacked bar plots
     for model_name, data in model_data.items():
         model_out_dir = os.path.join(outputs_dir, "averages", model_name)
@@ -99,33 +111,48 @@ def main(which_sim):
 
         for layer_name in layer_names_refs:
             sim_list = data["refs"][layer_name]  # list of (simA, simB)
-            # Compute fraction arrays for each run
-            fractionA_vals = []
-            fractionB_vals = []
-            for (a, b) in sim_list:
-                s = a + b
-                if s > 1e-8:
-                    fractionA_vals.append(a / s)
-                    fractionB_vals.append(b / s)
-                else:
-                    fractionA_vals.append(0.0)
-                    fractionB_vals.append(0.0)
-
-            meanA, ciA = confidence_interval(fractionA_vals, confidence=0.90)
-            meanB, ciB = confidence_interval(fractionB_vals, confidence=0.90)
-
+            
+            # Extract values
+            simA_vals = [a for (a, b) in sim_list]
+            simB_vals = [b for (a, b) in sim_list]
+        
+            # Now compute mean + CI on the standardized values
+            meanA, ciA = confidence_interval(simA_vals, confidence=0.90)
+            meanB, ciB = confidence_interval(simB_vals, confidence=0.90)
+            
             fractionA_means_refs.append(meanA)
             fractionA_cis_refs.append(ciA)
             fractionB_means_refs.append(meanB)
             fractionB_cis_refs.append(ciB)
-
+        
             aggregated_fractions_refs[layer_name] = {
-                "meanA": meanA,
-                "ciA": ciA,
-                "meanB": meanB,
-                "ciB": ciB
+                "meanA": float(meanA),
+                "ciA": float(ciA),
+                "meanB": float(meanB),
+                "ciB": float(ciB)
             }
 
+        # Collect the means (order matters)
+        layer_order = list(aggregated_fractions_refs.keys())
+        
+        meanA_vals = [aggregated_fractions_refs[layer]["meanA"] for layer in layer_order]
+        meanB_vals = [aggregated_fractions_refs[layer]["meanB"] for layer in layer_order]
+
+        print(meanA_vals)
+        # Normalize using RobustScaler
+        scalerA = RobustScaler()
+        scalerB = RobustScaler()
+        
+        meanA_norm = scalerA.fit_transform(np.array(meanA_vals).reshape(-1, 1)).flatten()
+        meanB_norm = scalerB.fit_transform(np.array(meanB_vals).reshape(-1, 1)).flatten()
+
+        print(meanA_norm)
+        
+        # Write normalized values back into the dict
+        for i, layer_name in enumerate(layer_order):
+            aggregated_fractions_refs[layer_name]["meanA"] = float(meanA_norm[i])
+            aggregated_fractions_refs[layer_name]["meanB"] = float(meanB_norm[i]) 
+            
         # -- B) Text Pairs --
         # data["text_pairs"] is { pair_key: { layer_name: [(simA, simB), ...], ... } }
         aggregated_fractions_textpairs = {}
@@ -146,8 +173,8 @@ def main(which_sim):
                 for (a, b) in sim_list:
                     s = a + b
                     if s > 1e-8:
-                        fractionA_vals.append(a / s)
-                        fractionB_vals.append(b / s)
+                        fractionA_vals.append(a)
+                        fractionB_vals.append(b)
                     else:
                         fractionA_vals.append(0.0)
                         fractionB_vals.append(0.0)
@@ -167,6 +194,26 @@ def main(which_sim):
                     "ciB": ciB
                 }
 
+        # Normalize within each text pair
+        for pair_key, layer_dict in aggregated_fractions_textpairs.items():
+            layer_order = list(layer_dict.keys())
+        
+            # Extract meanA and meanB across layers
+            meanA_vals = [layer_dict[layer]["meanA"] for layer in layer_order]
+            meanB_vals = [layer_dict[layer]["meanB"] for layer in layer_order]
+        
+            # Apply RobustScaler
+            scalerA = RobustScaler()
+            scalerB = RobustScaler()
+        
+            meanA_norm = scalerA.fit_transform(np.array(meanA_vals).reshape(-1, 1)).flatten()
+            meanB_norm = scalerB.fit_transform(np.array(meanB_vals).reshape(-1, 1)).flatten()
+        
+            # Write back normalized values
+            for i, layer_name in enumerate(layer_order):
+                layer_dict[layer_name]["meanA"] = float(meanA_norm[i])
+                layer_dict[layer_name]["meanB"] = float(meanB_norm[i])
+
 
         # -- C) Save aggregated fraction data to JSON for this model
         out_json_path = os.path.join(model_out_dir, which_sim.split('.')[0] + "_aggregated_fraction_data_with_ci.json")
@@ -183,4 +230,5 @@ def main(which_sim):
 
 if __name__ == "__main__":
     main("cv_similarities.json")
+    #main("cv_similarities.json")
     #main("similarities.json")

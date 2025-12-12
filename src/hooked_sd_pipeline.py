@@ -302,8 +302,8 @@ class ModifiedStableDiffusionPipeline(HookedDiffusionAbstractPipeline):
                     blocks_to_save.append('unet.' + name)
         elif hasattr(self, 'transformer'):
             for name, _ in self.transformer.named_modules():
-                    if 'single' not in name and 'transformer' in name and len(name.split('.')) == 2: # and '18' in name
-                        blocks_to_save.append('transformer.' + name)
+                if 'transformer' in name and len(name.split('.')) == 2: 
+                    blocks_to_save.append('transformer.' + name)
 
         print('Saved', len(blocks_to_save), 'blocks for injection.')
         
