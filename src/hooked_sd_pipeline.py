@@ -267,7 +267,7 @@ class HookedStableDiffusionPipeline(HookedDiffusionAbstractPipeline):
 class ModifiedStableDiffusionPipeline(HookedDiffusionAbstractPipeline):
     # Modified pipeline that caches skip connections from the UNet down blocks.
     parent_cls = None  # Default class attribute
-
+    
    
     @classmethod
     def from_pretrained(cls, model_type, pretrained_model_name, *args, **kwargs):
@@ -282,6 +282,7 @@ class ModifiedStableDiffusionPipeline(HookedDiffusionAbstractPipeline):
         else:
             raise ValueError(f"Unsupported model_type: {model_type}")
 
+        cls.model_type = model_type
         parent_pipeline_instance = parent_cls.from_pretrained(pretrained_model_name, *args, **kwargs)
         return cls(parent_pipeline_instance)
     
@@ -302,8 +303,12 @@ class ModifiedStableDiffusionPipeline(HookedDiffusionAbstractPipeline):
                     blocks_to_save.append('unet.' + name)
         elif hasattr(self, 'transformer'):
             for name, _ in self.transformer.named_modules():
+              if self.model_type == 'pixart':
+                if 'transformer' in name and len(name.split('.')) == 3 and 'attn' in name: 
+                  blocks_to_save.append('transformer.' + name)
+              else:
                 if 'transformer' in name and len(name.split('.')) == 2: 
-                    blocks_to_save.append('transformer.' + name)
+                  blocks_to_save.append('transformer.' + name)
 
         print('Saved', len(blocks_to_save), 'blocks for injection.')
         
