@@ -1,0 +1,24 @@
+model: "PixArt-alpha/PixArt-XL-2-1024-MS"
+variant: "fp16"
+model_name: "pixart"
+image_size: 1024
+float_dtype: "float16"
+
+scale: 7.5
+seed: 42
+ddim_steps: 25
+
+selected_layers : [
+        ['unet.up_blocks.0.resnets.0'],
+        ['unet.up_blocks.0.resnets.1'],
+        ['unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2',
+        'unet.up_blocks.1.resnets.0']]

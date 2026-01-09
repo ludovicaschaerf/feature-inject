@@ -1,0 +1,17 @@
+model: "kandinsky-community/kandinsky-2-2-decoder"
+variant: "fp16"
+model_name: "auto"
+image_size: 768
+float_dtype: "float16"
+
+scale: 7.5
+seed: 42
+ddim_steps: 30
+
+sselected_layers : [
+        ['unet.down_blocks.2.resnets.1'],
+        ['unet.down_blocks.2.resnets.2'],
+        ['unet.down_blocks.2.resnets.1',
+        'unet.down_blocks.2.resnets.2',
+        ] 
+        ]

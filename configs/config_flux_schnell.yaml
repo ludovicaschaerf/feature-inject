@@ -1,0 +1,24 @@
+model: "black-forest-labs/FLUX.1-schnell"
+variant: "fp16"
+model_name: "flux"
+image_size: 512
+float_dtype: "float16"
+
+scale: 0
+seed: 42
+ddim_steps: 3
+
+selected_layers : [
+        ['unet.up_blocks.0.resnets.0'],
+        ['unet.up_blocks.0.resnets.1'],
+        ['unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2',
+        'unet.up_blocks.1.resnets.0']]

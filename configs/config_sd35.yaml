@@ -1,0 +1,24 @@
+model: "stabilityai/stable-diffusion-3.5-large-turbo"
+variant: "fp16"
+model_name: "sd3"
+image_size: 1024
+float_dtype: "float16"
+
+scale: 0
+seed: 42
+ddim_steps: 4
+
+selected_layers : [
+        ['unet.up_blocks.0.resnets.0'],
+        ['unet.up_blocks.0.resnets.1'],
+        ['unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2',
+        'unet.up_blocks.1.resnets.0']]

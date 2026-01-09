@@ -1,0 +1,18 @@
+model: "CompVis/stable-diffusion-v1-4"
+variant: "fp16"
+model_name: "auto"
+image_size: 512
+float_dtype: "float16"
+
+scale: 7.5
+seed: 42
+ddim_steps: 50
+
+selected_layers : [
+        ['unet.mid_block.resnets.1'],
+        ['unet.mid_block.attentions.0'],
+
+        ['unet.mid_block.resnets.0', 
+        'unet.mid_block.attentions.0'],
+        ]
+        

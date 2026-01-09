@@ -1,0 +1,24 @@
+model: "Qwen/Qwen-Image"
+variant: "fp16"
+model_name: "qwen"
+image_size: 1328
+float_dtype: "bfloat16"
+
+scale: 4
+seed: 42
+ddim_steps: 25
+
+selected_layers : [
+        ['unet.up_blocks.0.resnets.0'],
+        ['unet.up_blocks.0.resnets.1'],
+        ['unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.1.resnets.0'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2'],
+        ['unet.up_blocks.0.resnets.0',
+        'unet.up_blocks.0.resnets.1',
+        'unet.up_blocks.0.resnets.2',
+        'unet.up_blocks.1.resnets.0']]

@@ -1,0 +1,15 @@
+model: "stabilityai/sd-turbo"
+variant: "fp16"
+model_name: "auto"
+image_size: 512
+float_dtype: "float16"
+
+scale: 0
+seed: 42
+ddim_steps: 4
+
+selected_layers : [
+        ['unet.down_blocks.2.attentions.1',
+        'unet.down_blocks.2.resnets.1'],
+        ['unet.down_blocks.2.resnets.1']
+        ]

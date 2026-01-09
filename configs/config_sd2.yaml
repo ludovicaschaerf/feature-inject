@@ -1,0 +1,21 @@
+model: "sd2-community/stable-diffusion-2"
+variant: "fp16"
+model_name: "auto"
+image_size: 512
+float_dtype: "float16"
+
+scale: 7.5
+seed: 42
+ddim_steps: 50
+
+selected_layers : [
+        ['unet.down_blocks.2.attentions.1',
+        'unet.down_blocks.2.resnets.1'],
+        ['unet.down_blocks.2.resnets.1']
+        ]
+
+
+selected_layers_style : [
+        ['unet.up_blocks.1.resnets.0',
+        'unet.up_blocks.1.resnets.1',
+        ]]
